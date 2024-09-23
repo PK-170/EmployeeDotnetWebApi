@@ -26,6 +26,15 @@ namespace api.Controllers
             return Ok(contacts);
         }
 
+        [HttpGet("{id}")]
+
+        public IActionResult GetById([FromRoute] int id)
+        {
+            var contact = _context.Contacts.Find(id);
+
+
+        }
+
 
 
 
