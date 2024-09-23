@@ -17,5 +17,19 @@ namespace api.Controllers
         {
             _context = context;
         }
+
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+
+            var contacts = _context.Contacts.ToList();
+            return Ok(contacts);
+        }
+
+
+
+
+
+
     }
 }
