@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
+    [Route("api/contact")]
+    [ApiController]
     public class ContactController : ControllerBase
     {
 
