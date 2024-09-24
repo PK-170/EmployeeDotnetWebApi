@@ -35,7 +35,6 @@ namespace api.Controllers
             {
                 return NotFound();
             }
-
             return Ok(contact);
 
         }
