@@ -12,7 +12,14 @@ namespace api.Mappers
 
         public static ContactDto ToContactDto(this Contact contactModel)
         {
+            return new ContactDto
+            {
 
+                Id = contactModel.Id,
+                Name = contactModel.Name,
+                Email = contactModel.Email,
+                Phone = contactModel.Phone
+            };
         }
 
     }
