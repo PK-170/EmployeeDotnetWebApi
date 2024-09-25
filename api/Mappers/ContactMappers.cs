@@ -31,9 +31,8 @@ namespace api.Mappers
                 Name = contactDto.Name,
                 Email = contactDto.Email,
                 Phone = contactDto.Phone,
-
+                Favorite = contactDto.Favorite
             };
-
 
         }
 
