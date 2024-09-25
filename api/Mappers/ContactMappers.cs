@@ -22,5 +22,10 @@ namespace api.Mappers
             };
         }
 
+        public static Contact ToContactFromCreateDto()
+        {
+
+        }
+
     }
 }

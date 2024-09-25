@@ -42,7 +42,7 @@ namespace api.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody])
+        public IActionResult Create([FromBody] CreateContactRequestDto contactDto)
         {
 
 
