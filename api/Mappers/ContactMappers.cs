@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Dto;
+using api.Dtos;
 using api.Models;
 
 namespace api.Mappers
@@ -22,8 +23,17 @@ namespace api.Mappers
             };
         }
 
-        public static Contact ToContactFromCreateDto()
+        public static Contact ToContactFromCreateDTO(this CreateContactRequestDto contactDto)
         {
+
+            return new Contact
+            {
+                Name = contactDto.Name,
+                Email = contactDto.Email,
+                Phone = contactDto.Phone,
+
+            };
+
 
         }
 
