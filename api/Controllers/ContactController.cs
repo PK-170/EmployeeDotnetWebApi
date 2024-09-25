@@ -48,7 +48,7 @@ namespace api.Controllers
             var contactModel = contactDto.ToContactFromCreateDTO();
             _context.Contacts.Add(contactModel);
             _context.SaveChanges();
-            return CreatedAtAction(nameof(GetById), new { id = contactModel.Id });
+            return CreatedAtAction(nameof(GetById), new { id = contactModel.Id }, contactModel.ToContactDto());
         }
 
     }
