@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
+using api.Dtos;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
 
@@ -44,9 +45,10 @@ namespace api.Controllers
         [HttpPost]
         public IActionResult Create([FromBody] CreateContactRequestDto contactDto)
         {
-
-
-
+            var contactModel = contactDto.ToContactFromCreateDTO();
+            _context.Contacts.Add(contactModel);
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(GetById), new { id = contactModel.Id });
         }
 
     }
