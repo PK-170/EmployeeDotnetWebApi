@@ -61,6 +61,11 @@ namespace api.Controllers
             {
                 return NotFound();
             }
+
+            contactModel.Name = updateDto.Name;
+            contactModel.Email = updateDto.Email;
+            contactModel.Phone = updateDto.Phone;
+            contactModel.Favorite = updateDto.Favorite;
         }
 
 
