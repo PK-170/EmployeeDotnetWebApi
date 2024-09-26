@@ -55,7 +55,12 @@ namespace api.Controllers
         [Route("{id}")]
         public IActionResult Update([FromRoute] int id, [FromBody] UpdateContactRequestDto updateDto)
         {
-            var contactModel = _context.Contacts.FirstOrDefault()
+            var contactModel = _context.Contacts.FirstOrDefault(x => x.Id == id);
+
+            if (contactModel == null)
+            {
+                return NotFound();
+            }
         }
 
 
