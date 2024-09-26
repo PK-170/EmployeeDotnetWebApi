@@ -66,6 +66,9 @@ namespace api.Controllers
             contactModel.Email = updateDto.Email;
             contactModel.Phone = updateDto.Phone;
             contactModel.Favorite = updateDto.Favorite;
+
+            _context.SaveChanges();
+            return Ok(contactModel.ToContactDto());
         }
 
 
