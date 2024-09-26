@@ -53,9 +53,9 @@ namespace api.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public IActionResult Update([FromRoute] int id, [FromBody] UpdateContactDto updateDto)
+        public IActionResult Update([FromRoute] int id, [FromBody] UpdateContactRequestDto updateDto)
         {
-
+            var contactModel = _context.Contacts.FirstOrDefault()
         }
 
 
