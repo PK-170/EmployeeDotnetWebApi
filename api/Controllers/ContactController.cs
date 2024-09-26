@@ -51,6 +51,13 @@ namespace api.Controllers
             return CreatedAtAction(nameof(GetById), new { id = contactModel.Id }, contactModel.ToContactDto());
         }
 
+        [HttpPut]
+        [Route("{id}")]
+        public IActionResult Update([FromRoute] int id, [FromBody] UpdateContactDto updateDto)
+        {
+
+        }
+
 
 
 
