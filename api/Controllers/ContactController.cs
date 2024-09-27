@@ -73,7 +73,10 @@ namespace api.Controllers
 
         [HttpDelete]
         [Route("{id}")]
+        public IActionResult Delete()
+        {
 
+        }
 
 
 
