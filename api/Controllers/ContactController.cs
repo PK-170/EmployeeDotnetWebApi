@@ -75,7 +75,11 @@ namespace api.Controllers
         [Route("{id}")]
         public IActionResult Delete([FromRoute] int id)
         {
-            var contactModel = _context.contacts.FirstOrDefault(x => x.id = id);
+            var contactModel = _context.contacts.FirstOrDefault(x => x.Id == id);
+            if (contactModel == null)
+            {
+                return NotFound();
+            }
 
         }
 
