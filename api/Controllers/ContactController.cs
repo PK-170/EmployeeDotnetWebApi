@@ -71,6 +71,9 @@ namespace api.Controllers
             return Ok(contactModel.ToContactDto());
         }
 
+        [HttpDelete]
+        [Route("{id}")]
+
 
 
 
