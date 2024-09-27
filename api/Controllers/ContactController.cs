@@ -81,7 +81,8 @@ namespace api.Controllers
                 return NotFound();
             }
             _context.contacts.Remove(contactModel);
-
+            _context.SaveChanges();
+            return NoContent();
         }
 
 
