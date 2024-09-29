@@ -3,13 +3,13 @@ import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Contact } from '../models/contact.model';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HttpClientModule, AsyncPipe, FormsModule, ReactiveFormsModule],
+  imports: [RouterOutlet, HttpClientModule, AsyncPipe, FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -32,6 +32,13 @@ contactsForm = new FormGroup({
 
 onFormSubmit(){}
 
+someValue:string = "";
+someValues: Array<string> = new Array<string>();
+
+callSomeLogic(){
+  this.someValues.push(this.someValue);
+  this.someValue = "";
+}
 
   private getContacts()
   {
