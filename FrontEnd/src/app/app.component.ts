@@ -16,7 +16,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 export class AppComponent {
 
   http = inject(HttpClient);
-  data: any[] =[];
+  data =[];
 
   ngOnInit(): void{
      this.getContacts();
@@ -30,15 +30,11 @@ contactsForm = new FormGroup({
 })
 
 
-onFormSubmit(){}
-
-someValue:string = "";
-someValues: Array<string> = new Array<string>();
-
-callSomeLogic(){
-  this.someValues.push(this.someValue);
-  this.someValue = "";
+onFormSubmit(){
+  
 }
+
+
 
   private getContacts()
   {

@@ -1,26 +1,4 @@
-<input
-  type="text"
-  [(ngModel)]="someValue"
-  class="mt-4 bg-slate-100 border-b-3"
-/>
-<input
-  type="button"
-  value="Click"
-  (click)="callSomeLogic()"
-  class="border-b-2 mt-4 bg-slate-100"
-/>
-
-<table>
-  <tr>
-    <td>SomeValue</td>
-  </tr>
-
-  <tr *ngFor="let temp of someValues">
-    <td>{{ temp }}</td>
-  </tr>
-</table>
-
-<!-- <div class="flex h-screen">
+<div class="flex h-screen">
   <div class="w-[50%]">
     <form (ngSubmit)="onFormSubmit()" [formGroup]="contactsForm">
       <h1 class="py-10 font-extrabold text-5x1">Contact Book</h1>
@@ -84,4 +62,4 @@
     <p>No Contacts Found</p>
     }
   </div>
-</div> -->
+</div>
