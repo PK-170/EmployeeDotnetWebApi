@@ -31,7 +31,21 @@ contactsForm = new FormGroup({
 
 
 onFormSubmit(){
-    console.log(this.contactsForm.value);
+    const addContactRequest = {
+      name : this.contactsForm.value.name,
+      email: this.contactsForm.value.email,
+      phone: this.contactsForm.value.phone,
+      favorite: this.contactsForm.value.favorite
+    }
+
+    this.http.post('http://localhost:5236/api/contact', addContactRequest)
+    .subscribe({
+      next: (value) => {
+        console.log(value);
+        this.ngOnInit();
+        this.contactsForm.reset();
+      }
+    })
     }
 
 
