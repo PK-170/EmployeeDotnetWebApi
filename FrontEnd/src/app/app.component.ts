@@ -32,15 +32,23 @@ contactsForm = new FormGroup({
 
 
 onFormSubmit(){
-  if(!this.editMode){
+  
     const addContactRequest = {
       name : this.contactsForm.value.name,
       email: this.contactsForm.value.email,
       phone: this.contactsForm.value.phone,
       favorite: this.contactsForm.value.favorite
     }
-
+    if(!this.editMode){
     this.http.post('http://localhost:5236/api/contact', addContactRequest)
+    .subscribe({
+      next: (value) => {
+        console.log(value);
+        this.contactsForm.reset();
+      }
+    })
+  }else{
+    this.http.put('http://localhost:5236/api/contact', addContactRequest)
     .subscribe({
       next: (value) => {
         console.log(value);
@@ -48,9 +56,8 @@ onFormSubmit(){
         this.contactsForm.reset();
       }
     })
-    
-    
   }
+
     }
 
     onEdit(id: number){
