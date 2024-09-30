@@ -18,6 +18,7 @@ export class AppComponent {
   http = inject(HttpClient);
   data: any=[];
   editMode = false;
+  currentId:number = 0;
 
   ngOnInit(): void{
      this.getContacts();
@@ -44,16 +45,19 @@ onFormSubmit(){
     .subscribe({
       next: (value) => {
         console.log(value);
+        this.ngOnInit();
         this.contactsForm.reset();
       }
     })
   }else{
-    this.http.put('http://localhost:5236/api/contact', addContactRequest)
+    var id = this.currentId;
+    this.http.put((`http://localhost:5236/api/contact/${id}`), addContactRequest)
     .subscribe({
       next: (value) => {
         console.log(value);
         this.ngOnInit();
         this.contactsForm.reset();
+        this.editMode = false;
       }
     })
   }
@@ -62,6 +66,7 @@ onFormSubmit(){
 
     onEdit(id: number){
       this.editMode = true;
+      this.currentId = id;
       this.http.get(`http://localhost:5236/api/contact/${id}`)
       .subscribe((res:any) => {
              
