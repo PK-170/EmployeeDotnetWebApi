@@ -49,12 +49,16 @@ onFormSubmit(){
     }
 
     onEdit(id: number){
-      this.http.delete(`http://localhost:5236/api/contact/${id}`)
-      .subscribe({
-        next: (value) => {
-          alert("Are you sure you want Contact Deleted");
-          this.ngOnInit();
-        }
+      this.http.get(`http://localhost:5236/api/contact/${id}`)
+      .subscribe((res:any) => {
+             
+        this.contactsForm = new FormGroup({
+          name : new FormControl(res.name),
+          email : new FormControl(res.email),
+          phone : new FormControl(res.phone),
+          favorite : new FormControl(res.favorite)
+        })
+        
       })
 
     }
