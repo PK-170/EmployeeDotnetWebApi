@@ -17,6 +17,7 @@ export class AppComponent {
 
   http = inject(HttpClient);
   data: any=[];
+  editMode = false;
 
   ngOnInit(): void{
      this.getContacts();
@@ -31,6 +32,7 @@ contactsForm = new FormGroup({
 
 
 onFormSubmit(){
+  if(!this.editMode){
     const addContactRequest = {
       name : this.contactsForm.value.name,
       email: this.contactsForm.value.email,
@@ -46,9 +48,13 @@ onFormSubmit(){
         this.contactsForm.reset();
       }
     })
+    
+    
+  }
     }
 
     onEdit(id: number){
+      this.editMode = true;
       this.http.get(`http://localhost:5236/api/contact/${id}`)
       .subscribe((res:any) => {
              
@@ -60,6 +66,7 @@ onFormSubmit(){
         })
         
       })
+      
 
     }
 
