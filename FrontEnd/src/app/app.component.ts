@@ -4,7 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Contact } from '../models/contact.model';
 import { AsyncPipe, CommonModule } from '@angular/common';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +23,7 @@ export class AppComponent {
   }
 
 contactsForm = new FormGroup({
-  name : new FormControl<string>(''),
+  name : new FormControl<string>("", [Validators.required]),
   email : new FormControl<string | null>(null),
   phone : new FormControl<string>(''),
   favorite : new FormControl<boolean>(false)
@@ -49,8 +49,20 @@ onFormSubmit(){
     }
 
 
+    onDelete(id: number){
+        
+      this.http.delete(`http://localhost:5236/api/contact/${id}`)
+      .subscribe({
+        next: (value) => {
+          alert("Are you sure you want Contact Deleted");
+          this.ngOnInit();
+        }
+      })
+    }
 
-  private getContacts()
+
+
+   getContacts()
   {
      this.http.get("http://localhost:5236/api/contact").subscribe(
       (data:any) => {
