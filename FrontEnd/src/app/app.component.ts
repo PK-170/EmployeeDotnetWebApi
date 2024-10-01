@@ -84,10 +84,11 @@ onFormSubmit(){
 
     onDelete(id: number){
         
+      alert("Are you sure you want Contact Deleted");
       this.http.delete(`http://localhost:5236/api/contact/${id}`)
       .subscribe({
         next: (value) => {
-          alert("Are you sure you want Contact Deleted");
+          
           this.ngOnInit();
         }
       })
