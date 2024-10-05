@@ -4,21 +4,11 @@ import { AppComponent } from './app.component';
 
 export const routes: Routes = [
 {
-    path: '', redirectTo:'Login' , pathMatch:'full'
+    path: '', redirectTo:'login' , pathMatch:'full'
 },
 {
     path:'login',
     component:LoginComponent
-},
-{
-    path:'',
-    component:LoginComponent,
-    children:[
-        {
-            path:'app',
-            component:AppComponent
-        }
-    ]
 }
 
 
