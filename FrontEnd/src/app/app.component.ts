@@ -12,7 +12,7 @@ import { LoginComponent } from "./login/login.component";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HttpClientModule, AsyncPipe, FormsModule, ReactiveFormsModule, CommonModule, RouterModule, HomeComponent, LoginComponent, RouterLink, RouterLinkActive],
+  imports: [RouterOutlet, AsyncPipe, CommonModule, RouterModule, HomeComponent, LoginComponent, RouterLink, RouterLinkActive],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
