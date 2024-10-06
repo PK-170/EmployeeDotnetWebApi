@@ -136,3 +136,5 @@
 /Users/mount/Desktop/EmployeeDotnetWebApi/api/obj/Debug/net8.0/api.pdb
 /Users/mount/Desktop/EmployeeDotnetWebApi/api/obj/Debug/net8.0/api.genruntimeconfig.cache
 /Users/mount/Desktop/EmployeeDotnetWebApi/api/obj/Debug/net8.0/ref/api.dll
+/Users/mount/Desktop/EmployeeDotnetWebApi/api/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/Users/mount/Desktop/EmployeeDotnetWebApi/api/bin/Debug/net8.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll

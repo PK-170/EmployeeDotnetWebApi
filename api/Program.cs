@@ -1,5 +1,11 @@
+using System.Text;
 using api.Data;
+using api.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +20,42 @@ builder.Services.AddDbContext<ApplicationDBContext>((Options) =>
 {
     Options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+builder.Services.AddIdentity<AppUser, IdentityRole>(Options =>
+{
+    Options.Password.RequireDigit = true;
+    Options.Password.RequireLowercase = true;
+    Options.Password.RequireUppercase = true;
+    Options.Password.RequireNonAlphanumeric = true;
+    Options.Password.RequiredLength = 10;
+})
+.AddEntityFrameworkStores<ApplicationDBContext>();
+
+builder.Services.AddAuthentication(Options =>
+{
+    Options.DefaultAuthenticateScheme =
+    Options.DefaultChallengeScheme =
+    Options.DefaultForbidScheme =
+    Options.DefaultScheme =
+    Options.DefaultSignInScheme =
+    Options.DefaultSignOutScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(Options =>
+{
+    Options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidIssuer = builder.Configuration["JWT: Issuer"],
+        ValidateAudience = true,
+        ValidAudience = builder.Configuration["JWT:"],
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(
+         System.Text.Encoding.UTF8.GetBytes(builder.Configuration["JWT:SigningKey"])
+       )
+
+    };
+}
+
+);
 
 var app = builder.Build();
 
@@ -48,7 +90,9 @@ app.MapGet("/weatherforecast", () =>
 
 app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
-//app.UseAuthorization();
+app.UseAuthentication();
+
+app.UseAuthorization();
 
 app.MapControllers();
 
