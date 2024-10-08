@@ -32,6 +32,9 @@ export class RegisterComponent {
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json'})
     }
+
+    // const headersnew = new HttpHeaders();
+    //  headersnew = headersnew.set('Content-Type', 'application/json; charset=utf-8');
     this.http.post('http://localhost:5236/api/account/register', this.onRegisterMethod, httpOptions)
     .subscribe(
       (value) => {
