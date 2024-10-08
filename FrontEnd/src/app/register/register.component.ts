@@ -36,20 +36,14 @@ export class RegisterComponent {
 
     this.http.post('http://localhost:5236/api/account/register', this.onRegisterMethod, httpOptions)
     .subscribe((res)=>{
-      //this.loginResp == res;
       this.router.navigateByUrl('/home-component');    
 
 },Error=>{
-//this.toastr.error("Invalid Username and/or Password");
 alert("Invalid Username and/or Password");
 console.log("Invalid Username");
 }
 );  
-
-    
   }
-
-
 }
 
 export class RegisterUserObj{
