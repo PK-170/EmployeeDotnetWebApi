@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
@@ -6,16 +6,16 @@ import { RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [RouterOutlet, FormsModule],
+  imports: [RouterOutlet, FormsModule, HttpClientModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
 
   registerUserObj: RegisterUserObj;
-  http = inject(HttpClient);
+  //http = inject(HttpClient);
 
-  constructor(){
+  constructor(private http: HttpClient){
 
     this.registerUserObj = new RegisterUserObj();
   }
@@ -28,12 +28,13 @@ export class RegisterComponent {
     console.log(this.registerUserObj.Email);
     console.log(this.registerUserObj.Password);
 
+    let headers = new Headers({ 'Content-Type': 'application/json' });
     this.http.post('http://localhost:5236/api/account/register', this.onRegisterMethod)
-    .subscribe({
-      next: (value) => {
+    .subscribe(
+      (value) => {
         console.log(value);
       }
-    })
+    ); 
 
     
   }
