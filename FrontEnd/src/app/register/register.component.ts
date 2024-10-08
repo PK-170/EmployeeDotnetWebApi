@@ -1,12 +1,13 @@
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [RouterOutlet, FormsModule, HttpClientModule],
+  imports: [RouterOutlet, FormsModule, HttpClientModule, RouterModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
@@ -15,7 +16,7 @@ export class RegisterComponent {
   registerUserObj: RegisterUserObj;
   //http = inject(HttpClient);
 
-  constructor(private http: HttpClient){
+  constructor(private http: HttpClient, private router: Router){
 
     this.registerUserObj = new RegisterUserObj();
   }
@@ -28,19 +29,22 @@ export class RegisterComponent {
     console.log(this.registerUserObj.Email);
     console.log(this.registerUserObj.Password);
 
-    //let headers = new Headers({ 'Content-Type': 'application/json' });
+  
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json'})
     }
 
-    // const headersnew = new HttpHeaders();
-    //  headersnew = headersnew.set('Content-Type', 'application/json; charset=utf-8');
     this.http.post('http://localhost:5236/api/account/register', this.onRegisterMethod, httpOptions)
-    .subscribe(
-      (value) => {
-        console.log(value);
-      
-  }); 
+    .subscribe((res)=>{
+      //this.loginResp == res;
+      this.router.navigateByUrl('/home-component');    
+
+},Error=>{
+//this.toastr.error("Invalid Username and/or Password");
+alert("Invalid Username and/or Password");
+console.log("Invalid Username");
+}
+);  
 
     
   }
