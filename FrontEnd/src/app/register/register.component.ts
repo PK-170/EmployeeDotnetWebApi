@@ -1,4 +1,4 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
@@ -28,13 +28,16 @@ export class RegisterComponent {
     console.log(this.registerUserObj.Email);
     console.log(this.registerUserObj.Password);
 
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    this.http.post('http://localhost:5236/api/account/register', this.onRegisterMethod)
+    //let headers = new Headers({ 'Content-Type': 'application/json' });
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    }
+    this.http.post('http://localhost:5236/api/account/register', this.onRegisterMethod, httpOptions)
     .subscribe(
       (value) => {
         console.log(value);
-      }
-    ); 
+      
+  }); 
 
     
   }
