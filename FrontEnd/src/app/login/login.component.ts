@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterOutlet } from '@angular/router';
 import { HomeComponent } from '../home/home.component';
+import { RegisterComponent } from '../register/register.component';
 import { ToastrService, ToastNoAnimation } from 'ngx-toastr';
 
 @Component({
@@ -39,6 +40,13 @@ onLogin(){
     console.log("Invalid Username");
   }
 );  
+}
+
+
+onRegister()
+{
+  this.router.navigateByUrl('/register-component');   
+  
 }
   
 }
