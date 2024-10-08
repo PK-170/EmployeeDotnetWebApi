@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 
@@ -12,6 +13,7 @@ import { RouterOutlet } from '@angular/router';
 export class RegisterComponent {
 
   registerUserObj: RegisterUserObj;
+  http = inject(HttpClient);
 
   constructor(){
 
@@ -25,6 +27,15 @@ export class RegisterComponent {
     console.log(this.registerUserObj.UserName);
     console.log(this.registerUserObj.Email);
     console.log(this.registerUserObj.Password);
+
+    this.http.post('http://localhost:5236/api/account/register', this.onRegisterMethod)
+    .subscribe({
+      next: (value) => {
+        console.log(value);
+      }
+    })
+
+    
   }
 
 
