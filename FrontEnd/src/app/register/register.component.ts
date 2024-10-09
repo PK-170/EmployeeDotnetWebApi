@@ -14,7 +14,6 @@ import { catchError } from 'rxjs';
 export class RegisterComponent {
 
   registerUserObj: RegisterUserObj;
-  //http = inject(HttpClient);
 
   constructor(private http: HttpClient, private router: Router){
 
