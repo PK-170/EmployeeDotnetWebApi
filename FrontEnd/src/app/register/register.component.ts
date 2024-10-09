@@ -29,18 +29,13 @@ export class RegisterComponent {
     console.log(this.registerUserObj.Email);
     console.log(this.registerUserObj.Password);
 
-  
-    const httpOptions = {
-      headers: new HttpHeaders({'Content-Type': 'application/json'})
-    }
-
-    this.http.post('http://localhost:5236/api/account/register', this.onRegisterMethod, httpOptions)
+    this.http.post('http://localhost:5236/api/account/register', this.registerUserObj)
     .subscribe((res)=>{
-      this.router.navigateByUrl('/home-component');    
-
-},Error=>{
+      this.router.navigateByUrl('/login-component'); 
+}
+,Error=>{
 alert("Invalid Username and/or Password");
-console.log("Invalid Username");
+console.log("Invalid password");
 }
 );  
   }
